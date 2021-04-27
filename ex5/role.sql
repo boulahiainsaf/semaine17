@@ -20,7 +20,7 @@ GRANT SELECT
 ON gescom_afpa.customers
 TO Rmarketing;
 
-SHOW GRANTS FOR marketing;
+SHOW GRANTS FOR Rmarketing;
 
 CREATE USER IF NOT EXISTS 'marketing'@'localhost'
 IDENTIFIED BY 'abcd';
