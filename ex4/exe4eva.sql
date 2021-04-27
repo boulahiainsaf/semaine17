@@ -123,11 +123,8 @@ WHERE pro_ref = 'barb004';
 
 
 UPDATE products
-INNER JOIN categories ON pro_cat_id = cat_id
-SET
-pro_price = pro_price*1.011,
-pro_update_date = CURRENT_TIME()
-WHERE cat_name = 'Parasols';
+set pro_price = pro_price * 1.011,  pro_update_date = CURRENT_TIME()
+where pro_id= 25 or pro_id= 27;
 
 
 
@@ -135,9 +132,5 @@ WHERE cat_name = 'Parasols';
 --Q21. Supprimer les produits non vendus de la catégorie "Tondeuses électriques". Vous devez utiliser une sous-requête sans indiquer de valeurs de clés.
 
 
-DELETE supp
-FROM products supp
-INNER JOIN categories ON supp.pro_cat_id = cat_id
-LEFT JOIN orders_details ON supp.pro_id = ode_pro_id
-WHERE cat_name = 'Tondeuses électriques'
-AND ode_pro_id IS NULL;
+DELETE* FROM products
+WHERE pro_cat_id = (select `cat_id` from `categories` where `cat_name`="Tondeuses électriques")  and `pro_id` not in (select `ode_pro_id` from `orders_details`);
